@@ -1,0 +1,2 @@
+# HuffmanCodec
+A Huffman Codec
