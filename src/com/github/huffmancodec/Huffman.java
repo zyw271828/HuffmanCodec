@@ -13,10 +13,10 @@ public class Huffman {
 	}
 
 	// 结点定义
-	private static class Node implements Comparable<Node> {
-		private final char ch;
-		private final int freq;
-		private final Node left, right;
+	protected static class Node implements Comparable<Node> {
+		final char ch;
+		final int freq;
+		final Node left, right;
 
 		Node(char ch, int freq, Node left, Node right) {
 			this.ch = ch;
@@ -118,10 +118,7 @@ public class Huffman {
 		buildCode(st, root, "");
 
 		// 输出霍夫曼树
-		writeTrie(root);
-
-		// 关闭输出流
-		BinaryStdOut.close();
+		BTreePrinter.printNode(root);
 	}
 
 	// 根据统计频率建立霍夫曼树

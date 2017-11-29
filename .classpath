@@ -6,12 +6,17 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/home/zyw/下载/algs4.jar">
+	<classpathentry kind="lib" path="/home/zyw/eclipse-workspace/HuffmanCodec/lib/algs4.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/home/zyw/下载/filedrop.jar">
+	<classpathentry kind="lib" path="/home/zyw/eclipse-workspace/HuffmanCodec/lib/filedrop.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/zyw/eclipse-workspace/HuffmanCodec/lib/commons-io-2.6.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>

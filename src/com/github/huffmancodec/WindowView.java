@@ -18,6 +18,8 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import org.apache.commons.io.IOUtils;
+
 import net.iharder.dnd.FileDrop;
 
 public class WindowView {
@@ -71,7 +73,7 @@ public class WindowView {
 		try {
 			Files.deleteIfExists(Paths.get("file/CodeFile.bin"));
 			Files.deleteIfExists(Paths.get("file/TextFile.txt"));
-			Files.deleteIfExists(Paths.get("file/Tree.bin"));
+			Files.deleteIfExists(Paths.get("file/Tree.txt"));
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
@@ -256,10 +258,9 @@ public class WindowView {
 					try {
 						Process p = Runtime.getRuntime().exec(new String[] { shell[0], shell[1], "cd bin "
 								+ "&& echo \"" + text + "\" > ../file/TextFile.txt "
-								+ "&& java -cp ../lib/algs4.jar:. com.github.huffmancodec.Huffman = < ../file/TextFile.txt > ../file/Tree.bin "
-								+ "&& java -cp ../lib/algs4.jar:. com.github.huffmancodec.BinaryDump 20 < ../file/Tree.bin" });
-						// TODO new Window
-						outputToTextArea("霍夫曼树: \n", p, outputTextArea);
+								+ "&& java -cp ../lib/algs4.jar:. com.github.huffmancodec.Huffman = < ../file/TextFile.txt > ../file/Tree.txt "
+								+ "&& cat ../file/Tree.txt" });
+						new TreeView(p);
 					} catch (IOException e) {
 						JOptionPane.showConfirmDialog(frame, "编码失败", "错误", JOptionPane.PLAIN_MESSAGE);
 					}
@@ -273,17 +274,9 @@ public class WindowView {
 	}
 
 	public static void outputToTextArea(String start, Process p, JTextArea ta) throws IOException {
-		StringBuilder out = new StringBuilder();
 		BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
-		String line = null;
-		String previous = null;
 		ta.setText(start);
-		while ((line = br.readLine()) != null)
-			if (!line.equals(previous)) {
-				previous = line;
-				out.append(line).append('\n');
-				ta.append(line + "\n");
-			}
+		ta.append(IOUtils.toString(br));
 		if (!ta.getText().equals("")) {
 			// 消除行尾换行符
 			ta.setText(ta.getText().substring(0, ta.getText().length() - 1));
