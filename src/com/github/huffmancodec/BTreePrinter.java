@@ -31,6 +31,8 @@ public class BTreePrinter {
 					System.out.print("¶");
 				} else if (node.ch == ' ') {
 					System.out.print("·");
+				} else if (node.ch == '\t') {
+					System.out.print("»");
 				} else {
 					System.out.print(node.ch);
 				}

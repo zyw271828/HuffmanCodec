@@ -25,7 +25,7 @@ public class TreeView {
 		frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setBounds(100, 100, 800, 600);
-		frame.setTitle("霍夫曼树 (换行符: ¶ 空格: ·)");
+		frame.setTitle("霍夫曼树 (换行符: ¶ 空格: · 制表符: »)");
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 
 		JTextArea textArea = new JTextArea();

@@ -19,7 +19,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import org.apache.commons.io.IOUtils;
-
 import net.iharder.dnd.FileDrop;
 
 public class WindowView {
@@ -162,10 +161,9 @@ public class WindowView {
 				} else {
 					// inputTextArea 非空
 					outputTextArea.setText("");
-					String text = inputTextArea.getText();
 					try {
+						Files.write(Paths.get("file/TextFile.txt"), inputTextArea.getText().getBytes());
 						Process p = Runtime.getRuntime().exec(new String[] { shell[0], shell[1], "cd bin "
-								+ "&& echo \"" + text + "\" > ../file/TextFile.txt "
 								+ "&& java -cp ../lib/algs4.jar:. com.github.huffmancodec.Huffman - < ../file/TextFile.txt > ../file/CodeFile.bin "
 								+ "&& java -cp ../lib/algs4.jar:. com.github.huffmancodec.BinaryDump 20 < ../file/CodeFile.bin" });
 						outputToTextArea("编码结果: \n", p, outputTextArea);
@@ -254,10 +252,9 @@ public class WindowView {
 					JOptionPane.showConfirmDialog(frame, "请先输入编码内容", "提示", JOptionPane.PLAIN_MESSAGE);
 				} else {
 					// inputTextArea 非空
-					String text = inputTextArea.getText();
 					try {
+						Files.write(Paths.get("file/TextFile.txt"), inputTextArea.getText().getBytes());
 						Process p = Runtime.getRuntime().exec(new String[] { shell[0], shell[1], "cd bin "
-								+ "&& echo \"" + text + "\" > ../file/TextFile.txt "
 								+ "&& java -cp ../lib/algs4.jar:. com.github.huffmancodec.Huffman = < ../file/TextFile.txt > ../file/Tree.txt "
 								+ "&& cat ../file/Tree.txt" });
 						new TreeView(p);
@@ -277,9 +274,5 @@ public class WindowView {
 		BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
 		ta.setText(start);
 		ta.append(IOUtils.toString(br));
-		if (!ta.getText().equals("")) {
-			// 消除行尾换行符
-			ta.setText(ta.getText().substring(0, ta.getText().length() - 1));
-		}
 	}
 }

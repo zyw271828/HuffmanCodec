@@ -35,7 +35,7 @@ public class Huffman {
 		}
 	}
 
-	// 编码
+	// 编码并输出
 	public static void compress() {
 		// 读取输入
 		String s = BinaryStdIn.readString();
@@ -76,7 +76,7 @@ public class Huffman {
 		BinaryStdOut.close();
 	}
 
-	// 解码
+	// 解码并输出
 	public static void expand() {
 		// 读取霍夫曼树
 		Node root = readTrie();
